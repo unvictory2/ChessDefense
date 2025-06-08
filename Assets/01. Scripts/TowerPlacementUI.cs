@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class TowerPlacementUI : MonoBehaviour
@@ -66,16 +67,14 @@ public class TowerPlacementUI : MonoBehaviour
     void CreateUpgradeButton(string pieceType, int cost, int index)
     {
         GameObject button = Instantiate(upgradeButtonPrefab, buttonContainer);
-        button.GetComponentInChildren<TextMeshProUGUI>().text = $"{cost}G"; // 대문자 G로 변경
+        button.GetComponentInChildren<TextMeshProUGUI>().text = $"{cost}G";
 
-        // Grid Layout Group 사용하므로 위치 조정 코드 제거
-
-        // 자식 Image 컴포넌트 찾기 (버튼의 자식 중 Image 컴포넌트)
+        // 자식 이미지 찾기
         Image childImage = null;
         foreach (Transform child in button.transform)
         {
             childImage = child.GetComponent<Image>();
-            if (childImage != null && child != button.transform) // 버튼 자신의 Image가 아닌 자식의 Image만 찾음
+            if (childImage != null && child != button.transform)
                 break;
         }
 
@@ -115,12 +114,13 @@ public class TowerPlacementUI : MonoBehaviour
         {
             PlaceTower(type);
         }
+
         HideUI();
     }
 
     void PlaceTower(string pieceType)
     {
-        TowerTypeInfo info = GetInfoByType(pieceType);
+        var info = GetInfoByType(pieceType);
         if (info == null || info.prefab == null)
         {
             Debug.LogError($"{pieceType} 타워 프리팹 없음");
@@ -165,14 +165,29 @@ public class TowerPlacementUI : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && uiPanel.activeInHierarchy)
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
+
+            int tileLayer = LayerMask.NameToLayer("Tile");
+            int layerMask = 1 << tileLayer;
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
-                if (hit.collider.GetComponent<BoardTile>() != _selectedTile)
+                // 감지된 오브젝트의 레이어 출력
+                string layerName = LayerMask.LayerToName(hit.collider.gameObject.layer);
+                Debug.Log($"클릭 감지: 오브젝트 {hit.collider.gameObject.name}, 레이어 {layerName} ({hit.collider.gameObject.layer})");
+
+                BoardTile tile = hit.collider.GetComponent<BoardTile>();
+                if (tile != null)
                 {
-                    HideUI();
+                    Debug.Log($"타일 클릭: ({tile.x}, {tile.y})");
+                    if (tile != _selectedTile)
+                    {
+                        HideUI();
+                    }
                 }
             }
         }
     }
+
 }

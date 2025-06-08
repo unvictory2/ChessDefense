@@ -33,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemy = Instantiate(randomEnemyPrefab, randomSpawnPoint.position, randomSpawnPoint.rotation);
         currentEnemyCount++;
 
-        Debug.Log($"몬스터 생성: {enemy.name} at {randomSpawnPoint.name}");
+        //Debug.Log($"몬스터 생성: {enemy.name} at {randomSpawnPoint.name}");
     }
 
     public void OnEnemyDestroyed()

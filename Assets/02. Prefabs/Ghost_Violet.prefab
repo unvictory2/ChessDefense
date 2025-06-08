@@ -306,6 +306,9 @@ MonoBehaviour:
   AttackRange: 1.5
   AttackDamage: 10
   AttackCooldown: 1
+  towerLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &5960250636018260806
 GameObject:
   m_ObjectHideFlags: 0

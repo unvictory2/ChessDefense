@@ -126,6 +126,7 @@ MonoBehaviour:
   _attackRange: 2
   _attackInterval: 1
   _attackDamage: 10
+  _attackRangeLayer: 8
 --- !u!54 &-2514565300472526574
 Rigidbody:
   m_ObjectHideFlags: 0

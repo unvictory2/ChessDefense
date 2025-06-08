@@ -923,3 +923,6 @@ MonoBehaviour:
   AttackRange: 1.5
   AttackDamage: 10
   AttackCooldown: 1
+  towerLayer:
+    serializedVersion: 2
+    m_Bits: 8

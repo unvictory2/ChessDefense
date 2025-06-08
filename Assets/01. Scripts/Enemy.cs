@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
@@ -10,57 +11,100 @@ public class Enemy : MonoBehaviour, IDamageable
     public int AttackDamage = 10;
     public float AttackCooldown = 1f;
 
+    [Header("Targeting")]
+    [SerializeField] private LayerMask towerLayer;
+    private Transform _currentTarget;
+    private List<ChessPiece> _nearbyTowers = new List<ChessPiece>();
+
     [Header("Animation")]
     private Animator _animator;
     private bool _isMoving = false;
     private bool _isDead = false;
-
     private float _attackTimer;
-    private Transform _king;
-    private Vector3 _targetPosition;
 
     void Start()
     {
-        // 킹 찾기
-        _king = BoardManager.Instance.mainKing.transform;
-        _targetPosition = _king.position;
-
-        // 애니메이터 컴포넌트 찾기
         _animator = GetComponentInChildren<Animator>();
-
-        // 이동 시작
-        _isMoving = true;
+        FindNewTarget();
         UpdateAnimation();
     }
 
     void Update()
     {
-        if (_isDead) return; // 죽었으면 더 이상 동작 X
+        if (_isDead) return;
 
         _attackTimer += Time.deltaTime;
 
-        if (_king == null) return;
+        // 0.5초마다 타겟 재탐색 (60FPS 기준 30프레임)
+        if (Time.frameCount % 30 == 0) FindNewTarget();
 
-        float distanceToKing = Vector3.Distance(transform.position, _king.position);
-
-        // 공격 범위 밖이면 이동
-        if (distanceToKing > AttackRange)
+        if (_currentTarget == null)
         {
-            MoveTowardsKing();
+            FindNewTarget();
+            return;
+        }
+
+        float distance = Vector3.Distance(transform.position, _currentTarget.position);
+
+        if (distance > AttackRange)
+        {
+            MoveTowardsTarget();
         }
         else
         {
-            // 공격 범위 안이면 정지 후 공격
             StopMoving();
             if (_attackTimer >= AttackCooldown)
             {
-                AttackKing();
+                AttackTarget();
                 _attackTimer = 0f;
             }
         }
     }
 
-    void MoveTowardsKing()
+    void FindNewTarget()
+    {
+        // 주변 타워 탐지 (공격 범위의 120% 영역)
+        Collider[] towers = Physics.OverlapSphere(
+            transform.position,
+            AttackRange * 1.2f,
+            towerLayer,
+            QueryTriggerInteraction.Collide // 트리거 콜라이더도 감지
+        );
+
+        _nearbyTowers.Clear();
+        foreach (Collider col in towers)
+        {
+            ChessPiece tower = col.GetComponent<ChessPiece>();
+            if (tower != null) _nearbyTowers.Add(tower);
+        }
+
+        // 가장 가까운 타워 선택
+        ChessPiece closestTower = GetClosestTarget(_nearbyTowers);
+
+        // 타겟 결정 우선순위: 타워 > 킹
+        _currentTarget = closestTower != null ?
+            closestTower.transform :
+            BoardManager.Instance.mainKing.transform;
+    }
+
+    ChessPiece GetClosestTarget(List<ChessPiece> targets)
+    {
+        ChessPiece closest = null;
+        float minDistance = Mathf.Infinity;
+
+        foreach (ChessPiece target in targets)
+        {
+            float distance = Vector3.Distance(transform.position, target.transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closest = target;
+            }
+        }
+        return closest;
+    }
+
+    void MoveTowardsTarget()
     {
         if (!_isMoving)
         {
@@ -68,17 +112,19 @@ public class Enemy : MonoBehaviour, IDamageable
             UpdateAnimation();
         }
 
-        // 킹 방향으로 이동
-        Vector3 direction = (_king.position - transform.position).normalized;
-        direction.y = 0; // Y축 고정
+        Vector3 direction = (_currentTarget.position - transform.position).normalized;
+        direction.y = 0;
 
         transform.position += direction * MoveSpeed * Time.deltaTime;
 
-        // Y축 회전 (킹 바라보기)
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                Time.deltaTime * 5f
+            );
         }
     }
 
@@ -95,24 +141,22 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         if (_animator != null)
         {
-            // 이동 파라미터 설정 (Animator Controller에 "IsMoving" bool 파라미터 필요)
             _animator.SetBool("IsMoving", _isMoving);
-
-            // 속도 파라미터 설정 (선택사항)
             _animator.SetFloat("Speed", _isMoving ? MoveSpeed : 0f);
         }
     }
 
-    void AttackKing()
+    void AttackTarget()
     {
         if (_animator != null)
         {
-            _animator.SetTrigger("Attack"); // "Attack" 트리거 파라미터 필요
+            _animator.SetTrigger("Attack");
         }
 
-        // 킹에게 데미지
-        BoardManager.Instance.mainKing.TakeDamage(AttackDamage);
-        Debug.Log($"킹 공격! 데미지: {AttackDamage}");
+        if (_currentTarget.TryGetComponent<IDamageable>(out var target))
+        {
+            target.TakeDamage(AttackDamage);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -130,31 +174,35 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         _isDead = true;
 
-        // 콜라이더 비활성화 (중복 충돌 방지)
+        // 콜라이더 비활성화
         Collider collider = GetComponent<Collider>();
         if (collider != null) collider.enabled = false;
 
-        // 애니메이터 Death 트리거 발동
+        // 애니메이션 트리거
         if (_animator != null)
         {
-            _animator.SetTrigger("IsDead"); // Animator Controller에 "IsDead" Trigger 파라미터 필요
+            _animator.SetTrigger("IsDead");
         }
 
-        // 스포너에 알림
+        // 스포너 알림
         FindObjectOfType<EnemySpawner>()?.OnEnemyDestroyed();
 
         // 골드 지급
         GoldManager.Instance.AddGold(10);
 
-        // 애니메이션 이벤트 또는 코루틴으로 오브젝트 삭제
+        // 1초 후 파괴
         StartCoroutine(DestroyAfterAnimation());
     }
 
-    // 애니메이션 이벤트로 호출할 수도 있음
     IEnumerator DestroyAfterAnimation()
     {
-        // 애니메이션 길이만큼 대기 (예: 1초)
         yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
+    }
+
+    // 애니메이션 이벤트용 함수
+    public void DestroySelf()
+    {
         Destroy(gameObject);
     }
 }

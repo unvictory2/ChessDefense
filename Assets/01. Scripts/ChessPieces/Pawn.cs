@@ -1,4 +1,3 @@
-// Pawn.cs
 using UnityEngine;
 
 public class Pawn : ChessPiece
@@ -7,6 +6,7 @@ public class Pawn : ChessPiece
     [SerializeField] private float _attackRange = 3f;
     [SerializeField] private float _attackInterval = 1f;
     [SerializeField] private int _attackDamage = 10;
+    [SerializeField] private int _attackRangeLayer = 8; // AttackRange 레이어 번호
 
     private SphereCollider _attackCollider;
 
@@ -21,12 +21,25 @@ public class Pawn : ChessPiece
         _attackCollider.radius = _attackRange;
         _attackCollider.isTrigger = true;
 
+        // 레이어 설정 (본인 + 모든 자식)
+        SetLayerRecursively(rangeObj, _attackRangeLayer);
+
         // 폰 전용 전략 설정
         SetAttackStrategy(new PawnAttackStrategy(
             _attackInterval,
             _attackDamage,
             ProjectilePrefab
         ));
+    }
+
+    // 모든 자식 오브젝트 레이어 설정 (재귀 함수)
+    void SetLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, layer);
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -50,7 +63,9 @@ public class Pawn : ChessPiece
         {
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
+            {
                 ((PawnAttackStrategy)_attackStrategy).OnEnemyLeft(enemy);
+            }
         }
     }
 }
