@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3507824392298268319}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RIG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 698378801454903877}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SlimeFrontTailJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6663974703601554367}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftArrowControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7738749259166049028}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SlimeNeckJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5561814853433562272}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SlimeBackTailJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4744074850611044790}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SlimeRightJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1713239018050949373}
   - component: {fileID: 6584439597708669722}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SlimeLevel1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6037669423844446618}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SlimeRootJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6452948442808619806}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightArrowControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,7 +354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5773861886273438510}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SlimeControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +393,9 @@ GameObject:
   - component: {fileID: 4025317086820565164}
   - component: {fileID: 589811791978472289}
   - component: {fileID: 1210938712863441291}
-  m_Layer: 0
+  - component: {fileID: -2364131807384841064}
+  - component: {fileID: -183923038002931996}
+  m_Layer: 7
   m_Name: Slime_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +429,7 @@ Animator:
   m_GameObject: {fileID: 4939915141242809379}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e607f74860c67814e93c914b710142d5, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 56a63653e7816fb4b92c164bad09f471, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -459,6 +461,50 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02, y: 0.04, z: 0.02}
   m_Center: {x: 0, y: 0.02, z: 0}
+--- !u!54 &-2364131807384841064
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4939915141242809379}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 32
+  m_CollisionDetection: 0
+--- !u!114 &-183923038002931996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4939915141242809379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0a5aa8ab8e1014691d6e8a3c0fa2ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  MoveSpeed: 2
+  AttackRange: 1.5
+  AttackDamage: 10
+  AttackCooldown: 1
 --- !u!1 &5195331872321429686
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,7 +514,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1450989955479454446}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SlimeHeadJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +545,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3736191949725928852}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SlimeControl1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -530,7 +576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4311447203963831684}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BackArrowControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -562,7 +608,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 896891751948311953}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SlimeLeftTailJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -593,7 +639,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6726001173084590704}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontArrowControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -625,7 +671,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4003661163496627366}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MESH
   m_TagString: Untagged
   m_Icon: {fileID: 0}

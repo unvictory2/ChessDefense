@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5248059222227018721}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rEarJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5175798144872151210}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rFootJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5164076131173003139}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: lFeetControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4890367804552848276}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rFeetControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6097991068293688728}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rEarControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2047329674208975969}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: lEarJoint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6028221598567438556}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RootJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5151540921393254254}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: lEarJoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5096750577196558814}
   - component: {fileID: 7438434420397354895}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MESH
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4391273082677907314}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: lEarJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +393,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8253449920516484522}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rToeJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8070294727744477887}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: lEarControl2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +455,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5660308461710890922}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: lToeJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,7 +486,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6791285520618724966}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HipControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,7 +519,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5365119125200338689}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HeadJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -552,7 +552,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7092522611337903068}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rEarJoint3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -583,7 +583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4148322266013448499}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RabbitControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -617,7 +617,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2650885735160034518}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HeadControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,7 +650,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5358074992330407965}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: lFootJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +682,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4017098175887927363}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rEarControl2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,7 +713,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1601756713282762923}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: lEarControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,7 +745,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3971144480731740468}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rEarJoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -777,7 +777,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3143366488975742721}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RIG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -811,7 +811,9 @@ GameObject:
   - component: {fileID: 6672385713457351912}
   - component: {fileID: 8573766594432473108}
   - component: {fileID: 8275518390183902667}
-  m_Layer: 0
+  - component: {fileID: -8966186774968671133}
+  - component: {fileID: -6565562903370677390}
+  m_Layer: 7
   m_Name: Rabbit_Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -845,7 +847,7 @@ Animator:
   m_GameObject: {fileID: 9023680348270785876}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 05b0336cad2ece64b99ce054ed619f4c, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: df5887676eddc6448aaaa39a89358d58, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -877,3 +879,47 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02, y: 0.07, z: 0.02}
   m_Center: {x: 0, y: 0.035, z: 0}
+--- !u!54 &-8966186774968671133
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9023680348270785876}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 32
+  m_CollisionDetection: 0
+--- !u!114 &-6565562903370677390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9023680348270785876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0a5aa8ab8e1014691d6e8a3c0fa2ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  MoveSpeed: 2
+  AttackRange: 1.5
+  AttackDamage: 10
+  AttackCooldown: 1

@@ -129,7 +129,7 @@ public class TowerPlacementUI : MonoBehaviour
 
         GameObject tower = Instantiate(
             info.prefab,
-            _selectedTile.transform.position + Vector3.up * 0.5f,
+            _selectedTile.transform.position,
             Quaternion.identity,
             DynamicObjects.ChessPieces
         );

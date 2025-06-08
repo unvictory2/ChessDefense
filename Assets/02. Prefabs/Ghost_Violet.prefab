@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4270364587864080543}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HeadControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8187875142103710825}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TailJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1297593594506121893}
   - component: {fileID: 8650394851612807963}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LV1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1080011795954259}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RIG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,9 @@ GameObject:
   - component: {fileID: 4850695721172387031}
   - component: {fileID: 8643680134101867319}
   - component: {fileID: 7192905820653609237}
-  m_Layer: 0
+  - component: {fileID: -1752934210286595224}
+  - component: {fileID: -2545757503667122325}
+  m_Layer: 7
   m_Name: Ghost_Violet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +230,7 @@ Animator:
   m_GameObject: {fileID: 3973783387590632580}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: fd4b310424927a840906404a14eeb5e4, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: c82e121cbaaed32448142f27c818925f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -260,6 +262,50 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02, y: 0.03, z: 0.02}
   m_Center: {x: 0, y: 0.003, z: 0}
+--- !u!54 &-1752934210286595224
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3973783387590632580}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 32
+  m_CollisionDetection: 0
+--- !u!114 &-2545757503667122325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3973783387590632580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0a5aa8ab8e1014691d6e8a3c0fa2ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
+  MoveSpeed: 2
+  AttackRange: 1.5
+  AttackDamage: 10
+  AttackCooldown: 1
 --- !u!1 &5960250636018260806
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 12903002118080052}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HeadTipJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,7 +346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3941216790363886708}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RootControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,7 +379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5875712385387847880}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GhostControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +412,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4317185236494969584}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MESH
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +444,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6667778256168546291}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TailControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -429,7 +475,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2484230317834337578}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HeadJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +507,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 213807202124152701}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RootJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
