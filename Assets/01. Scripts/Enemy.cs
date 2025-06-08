@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public float AttackRange = 1.5f;
     public int AttackDamage = 10;
     public float AttackCooldown = 1f;
+    public int rewardCoin = 100;
 
     [Header("Targeting")]
     [SerializeField] private LayerMask towerLayer;
@@ -174,6 +175,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         _isDead = true;
 
+
         // 콜라이더 비활성화
         Collider collider = GetComponent<Collider>();
         if (collider != null) collider.enabled = false;
@@ -188,7 +190,7 @@ public class Enemy : MonoBehaviour, IDamageable
         FindObjectOfType<EnemySpawner>()?.OnEnemyDestroyed();
 
         // 골드 지급
-        GoldManager.Instance.AddGold(10);
+        GoldManager.Instance.AddGold(rewardCoin);
 
         // 1초 후 파괴
         StartCoroutine(DestroyAfterAnimation());

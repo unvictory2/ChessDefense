@@ -9,6 +9,7 @@ public class Pawn : ChessPiece
     [SerializeField] private int _attackRangeLayer = 8; // AttackRange 레이어 번호
 
     private SphereCollider _attackCollider;
+    private float _lastAttackTime;
 
     protected override void Start()
     {
@@ -30,6 +31,33 @@ public class Pawn : ChessPiece
             _attackDamage,
             ProjectilePrefab
         ));
+    }
+
+    void Update()
+    {
+        // 쿨타임 확인 + 범위 내 적 존재 여부 확인
+        if (Time.time - _lastAttackTime >= _attackInterval && HasEnemiesInRange())
+        {
+            PerformAttack();
+            _lastAttackTime = Time.time;
+        }
+    }
+
+    bool HasEnemiesInRange()
+    {
+        if (_attackStrategy is PawnAttackStrategy pawnStrategy)
+        {
+            return pawnStrategy.GetDetectedEnemies().Count > 0;
+        }
+        return false;
+    }
+
+    void PerformAttack()
+    {
+        if (_attackStrategy != null)
+        {
+            _attackStrategy.Attack(this);
+        }
     }
 
     // 모든 자식 오브젝트 레이어 설정 (재귀 함수)

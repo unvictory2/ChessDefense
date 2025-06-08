@@ -1,4 +1,3 @@
-// PawnAttackStrategy.cs
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -19,6 +18,9 @@ public class PawnAttackStrategy : IAttackStrategy
 
     public void Attack(ChessPiece pawn)
     {
+        // 파괴된 적 제거
+        _detectedEnemies.RemoveAll(enemy => enemy == null);
+
         Debug.Log($"공격 시도: {Time.time}");
         if (Time.time - _lastAttackTime < _attackInterval) return;
         Debug.Log($"쿨타임 조건 충족");
@@ -36,6 +38,9 @@ public class PawnAttackStrategy : IAttackStrategy
         _lastAttackTime = Time.time;
     }
 
+    // 적 목록 반환 메서드
+    public List<Enemy> GetDetectedEnemies() => _detectedEnemies;
+
     // 폰 전용 충돌 감지 메서드
     public void OnEnemyDetected(Enemy enemy) => _detectedEnemies.Add(enemy);
     public void OnEnemyLeft(Enemy enemy) => _detectedEnemies.Remove(enemy);
@@ -45,8 +50,13 @@ public class PawnAttackStrategy : IAttackStrategy
         Enemy nearest = null;
         float minDistance = Mathf.Infinity;
 
+        // 파괴된 적 제거
+        _detectedEnemies.RemoveAll(enemy => enemy == null || enemy.Equals(null));
+
         foreach (Enemy enemy in _detectedEnemies)
         {
+            if (enemy == null) continue; // 추가 안전 장치
+
             float distance = Vector3.Distance(origin, enemy.transform.position);
             if (distance < minDistance)
             {
