@@ -5,16 +5,17 @@ using System.Collections.Generic;
 public class Enemy : MonoBehaviour, IDamageable
 {
     [Header("Enemy Stats")]
-    public int Health = 100;
-    public float MoveSpeed = 2f;
-    public float AttackRange = 1.5f;
-    public int AttackDamage = 10;
-    public float AttackCooldown = 1f;
-    public int rewardCoin = 100;
+    public int Health; // 인스펙터에서 설정된 체력 (현재 체력 + 최대 체력)
+    public float MoveSpeed;
+    public float AttackRange;
+    public int AttackDamage;
+    public float AttackCooldown;
+    public int rewardCoin;
 
     [Header("Health Settings")]
     [SerializeField] private GameObject enemyHealthBarPrefab; // 적 체력바 프리팹
     private HealthBar _healthBar;
+    private int _maxHealth; // 최대 체력 저장용 변수 추가
 
     [Header("Targeting")]
     [SerializeField] private LayerMask towerLayer;
@@ -29,8 +30,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Start()
     {
+        _maxHealth = Health; // 최대 체력 저장
         _healthBar = Instantiate(enemyHealthBarPrefab, transform).GetComponent<HealthBar>();
-        _healthBar.SetHealth(Health, Health);
+        _healthBar.SetHealth(Health, _maxHealth); // 최대 체력 반영
 
         _animator = GetComponentInChildren<Animator>();
         FindNewTarget();
@@ -167,7 +169,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         Health -= damage;
-        _healthBar.SetHealth(Health, 100); // 최대 체력 100 가정
+        _healthBar.SetHealth(Health, _maxHealth); // 최대 체력으로 변경
         if (Health <= 0) Die();
     }
 

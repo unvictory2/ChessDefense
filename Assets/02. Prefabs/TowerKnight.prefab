@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 0
-  Health: 100
+  Health: 300
   ProjectilePrefab: {fileID: 0}
   allyHealthBarPrefab: {fileID: 877168605733740741, guid: 24742c4e2e39b2243ae99056ab660f43, type: 3}
   _detectionRange: 3

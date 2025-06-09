@@ -9,6 +9,7 @@ public class Queen : ChessPiece
     [SerializeField] private int _attackDamage = 25;
     [SerializeField] private float _attackHeight = 2.2f;
 
+    public override int MaxHealth => 400;
     protected override void Start()
     {
         base.Start();

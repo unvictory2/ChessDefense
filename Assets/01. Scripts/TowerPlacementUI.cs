@@ -57,7 +57,7 @@ public class TowerPlacementUI : MonoBehaviour
             }
             else if (piece is Rook)
             {
-                CreateUpgradeButton("Queen", 200, 0);
+                CreateUpgradeButton("Queen", 230, 0);
             }
         }
 

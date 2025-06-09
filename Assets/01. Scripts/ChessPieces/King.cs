@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class King : ChessPiece
 {
+    public override int MaxHealth => 1000;
+
     protected override void Start()
     {
         base.Start();
@@ -14,7 +16,7 @@ public class King : ChessPiece
 
         if (Health <= 0)
         {
-            GameManager.Instance.GameOver(false, "King Destroyed!");
+            GameManager.Instance.GameOver(false, "Å· »ç¸Á!");
             BoardManager.Instance.UnregisterPiece(this);
         }
     }

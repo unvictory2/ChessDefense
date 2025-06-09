@@ -11,6 +11,8 @@ public class Knight : ChessPiece
     [Header("Effects")]
     [SerializeField] private GameObject _attackParticlesPrefab;
 
+    public override int MaxHealth => 300;
+
     protected override void Start()
     {
         base.Start();

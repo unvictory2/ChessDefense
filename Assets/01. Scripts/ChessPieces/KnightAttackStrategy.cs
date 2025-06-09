@@ -9,6 +9,7 @@ public class KnightAttackStrategy : IAttackStrategy
     private float _lastAttackTime;
     private List<Enemy> _detectedEnemies = new List<Enemy>();
     private Knight _knight;
+    Vector3 startPos;
 
     private GameObject _attackParticlesPrefab;
 
@@ -19,11 +20,15 @@ public class KnightAttackStrategy : IAttackStrategy
         _attackParticlesPrefab = particles;
     }
 
+
     public void Attack(ChessPiece knight)
     {
         if (Time.time - _lastAttackTime < _attackCooldown) return;
-        if (_knight == null) _knight = knight as Knight;
-
+        if (_knight == null)
+        {
+            _knight = knight as Knight;
+            startPos = _knight.transform.position;
+        }
         // 폰과 동일한 조건 체크
         _detectedEnemies.RemoveAll(enemy => enemy == null);
         if (_detectedEnemies.Count == 0) return;
@@ -39,7 +44,6 @@ public class KnightAttackStrategy : IAttackStrategy
     private IEnumerator JumpAttackCoroutine()
     {
         // 나이트 전용 공격 로직
-        Vector3 startPos = _knight.transform.position;
         Enemy target = GetNearestEnemy(startPos);
         if (target == null) yield break;
 

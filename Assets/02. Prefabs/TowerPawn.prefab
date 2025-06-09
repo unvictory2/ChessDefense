@@ -121,11 +121,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 0
-  Health: 100
   ProjectilePrefab: {fileID: 3860625542233755047, guid: 396943d886a94fc4f967f1aec2d932a0, type: 3}
   allyHealthBarPrefab: {fileID: 877168605733740741, guid: 24742c4e2e39b2243ae99056ab660f43, type: 3}
   _attackRange: 2.5
-  _attackInterval: 1
+  _attackInterval: 1.2
   _attackDamage: 10
   _attackRangeLayer: 8
 --- !u!54 &-2514565300472526574

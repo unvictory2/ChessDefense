@@ -11,6 +11,8 @@ public class Pawn : ChessPiece
     private SphereCollider _attackCollider;
     private float _lastAttackTime;
 
+    public override int MaxHealth => 100;
+
     protected override void Start()
     {
         base.Start();

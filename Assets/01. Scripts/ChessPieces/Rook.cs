@@ -9,6 +9,9 @@ public class Rook : ChessPiece
     [SerializeField] private int _attackDamage = 20;
     [SerializeField] private float _attackHeight = 2f;
 
+
+    public override int MaxHealth => 300;
+
     protected override void Start()
     {
         base.Start();

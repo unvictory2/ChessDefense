@@ -23,9 +23,9 @@ public class GoldManager : MonoBehaviour
     public void AddGold(int amount)
     {
         CurrentGold += amount;
-        if (CurrentGold >= 10000)
+        if (CurrentGold >= 2000)
         {
-            GameManager.Instance.GameOver(true, "Reached Gold Goal!");
+            GameManager.Instance.GameOver(true, "목표치 달성!");
         }
         UpdateUI();
     }
@@ -43,6 +43,6 @@ public class GoldManager : MonoBehaviour
 
     void UpdateUI()
     {
-        goldText.text = $"Gold: {CurrentGold}";
+        goldText.text = $"돈: {CurrentGold}";
     }
 }

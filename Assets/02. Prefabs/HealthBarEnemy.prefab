@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3639357708589300211}
   - component: {fileID: 6639865572154978700}
   - component: {fileID: 5683290826999277100}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 6455013186410194126}
   - component: {fileID: 8640814276467073563}
   - component: {fileID: 5843456865429235894}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 4703304189178582655}
   - component: {fileID: 4409546043653821458}
   - component: {fileID: 8856650476585512675}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 4375333990863004951}
   - component: {fileID: 3369307095110525579}
   - component: {fileID: 7023951383240539124}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,7 +339,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6615013320622638634}
   - component: {fileID: 7036045177756831381}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HealthBarEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,4 +375,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fill: {fileID: 7023951383240539124}
-  offset: {x: 0, y: 1.5, z: 0}
+  offset: {x: 0, y: 1.8, z: 0}

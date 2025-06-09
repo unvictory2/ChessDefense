@@ -919,11 +919,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
-  MoveSpeed: 2
+  MoveSpeed: 4
   AttackRange: 1.5
   AttackDamage: 10
   AttackCooldown: 1
-  rewardCoin: 100
+  rewardCoin: 50
   enemyHealthBarPrefab: {fileID: 4777234273963061998, guid: 224f2fc476076344287c4409ff03c062, type: 3}
   towerLayer:
     serializedVersion: 2

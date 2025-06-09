@@ -301,12 +301,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0a5aa8ab8e1014691d6e8a3c0fa2ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 100
-  MoveSpeed: 2
-  AttackRange: 1.5
-  AttackDamage: 10
-  AttackCooldown: 1
-  rewardCoin: 100
+  Health: 210
+  MoveSpeed: 3
+  AttackRange: 2
+  AttackDamage: 20
+  AttackCooldown: 0.7
+  rewardCoin: 85
   enemyHealthBarPrefab: {fileID: 4777234273963061998, guid: 224f2fc476076344287c4409ff03c062, type: 3}
   towerLayer:
     serializedVersion: 2

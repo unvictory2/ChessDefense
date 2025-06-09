@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         gameOverPanel.SetActive(true);
 
-        resultText.text = isVictory ? "Won!" : "Lost!";
+        resultText.text = isVictory ? "성공!" : "실패!";
         finalGoldText.text = $"{message}\nGold: {GoldManager.Instance.CurrentGold}";
     }
 

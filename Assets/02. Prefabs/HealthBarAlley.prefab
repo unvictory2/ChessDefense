@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1077239351009399602}
   - component: {fileID: -1232010808959522479}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HealthBarAlley
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 9140013056267380827}
   - component: {fileID: 1384495549184220998}
   - component: {fileID: 1936637149328121613}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 8721423188849230016}
   - component: {fileID: 1806101774256571142}
   - component: {fileID: 2788029127122658606}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 297460306981409388}
   - component: {fileID: 8386332300331960269}
   - component: {fileID: 7160130978540404613}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 4039911993428921204}
   - component: {fileID: 3844665844434295633}
   - component: {fileID: 868270178098396606}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
