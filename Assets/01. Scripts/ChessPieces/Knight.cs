@@ -8,6 +8,9 @@ public class Knight : ChessPiece
     [SerializeField] private int _attackDamage = 15;
     [SerializeField] private int _attackRangeLayer = 8; // 폰과 동일한 AttackRange 레이어
 
+    [Header("Effects")]
+    [SerializeField] private GameObject _attackParticlesPrefab;
+
     protected override void Start()
     {
         base.Start();
@@ -27,7 +30,8 @@ public class Knight : ChessPiece
         // 전략 설정 (폰과 동일한 인터페이스 사용)
         SetAttackStrategy(new KnightAttackStrategy(
             _attackCooldown,
-            _attackDamage
+            _attackDamage,
+            _attackParticlesPrefab // 파티클 프리팹 전달
         ));
     }
 
