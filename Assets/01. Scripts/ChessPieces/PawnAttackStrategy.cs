@@ -21,9 +21,7 @@ public class PawnAttackStrategy : IAttackStrategy
         // 파괴된 적 제거
         _detectedEnemies.RemoveAll(enemy => enemy == null);
 
-        Debug.Log($"공격 시도: {Time.time}");
         if (Time.time - _lastAttackTime < _attackInterval) return;
-        Debug.Log($"쿨타임 조건 충족");
 
         if (_detectedEnemies.Count == 0)
         {

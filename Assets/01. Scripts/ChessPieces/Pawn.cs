@@ -72,15 +72,12 @@ public class Pawn : ChessPiece
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"충돌 감지: {other.name}"); // 1. 충돌 발생 여부 확인
         if (((1 << other.gameObject.layer) & LayerMask.GetMask("Enemy")) != 0)
         {
-            Debug.Log($"적 감지: {other.name}"); // 2. 적 레이어 필터링 확인
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
             {
                 ((PawnAttackStrategy)_attackStrategy).OnEnemyDetected(enemy);
-                Debug.Log($"공격 대상 등록: {enemy.name}"); // 3. 적 등록 확인
             }
         }
     }

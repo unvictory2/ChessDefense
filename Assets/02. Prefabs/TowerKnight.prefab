@@ -123,8 +123,9 @@ MonoBehaviour:
   Team: 0
   Health: 100
   ProjectilePrefab: {fileID: 0}
-  _attackRange: 2
-  _attackDamage: 15
+  _attackCooldown: 2
+  _attackRadius: 6.5
+  DetectedEnemies: []
 --- !u!54 &3220755646135478713
 Rigidbody:
   m_ObjectHideFlags: 0
