@@ -4,18 +4,29 @@ using TMPro;
 public class GoldManager : MonoBehaviour
 {
     public static GoldManager Instance;
-    public int CurrentGold = 5555;
+    public int CurrentGold = 0;
     public TextMeshProUGUI goldText;
 
     void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         UpdateUI();
     }
 
     public void AddGold(int amount)
     {
         CurrentGold += amount;
+        if (CurrentGold >= 10000)
+        {
+            GameManager.Instance.GameOver(true, "Reached Gold Goal!");
+        }
         UpdateUI();
     }
 

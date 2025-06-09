@@ -13,6 +13,7 @@ public class Pawn : ChessPiece
 
     protected override void Start()
     {
+        base.Start();
         // 폰 전용 공격 범위 콜라이더 생성
         GameObject rangeObj = new GameObject("AttackRange");
         rangeObj.transform.SetParent(transform);

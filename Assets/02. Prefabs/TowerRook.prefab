@@ -123,6 +123,7 @@ MonoBehaviour:
   Team: 0
   Health: 100
   ProjectilePrefab: {fileID: 4051170952100936592, guid: 6e3bda67fa30fda4190b51f3662e2e56, type: 3}
+  allyHealthBarPrefab: {fileID: 877168605733740741, guid: 24742c4e2e39b2243ae99056ab660f43, type: 3}
   _attackRange: 7
   _attackThickness: 2
   _attackInterval: 1.2

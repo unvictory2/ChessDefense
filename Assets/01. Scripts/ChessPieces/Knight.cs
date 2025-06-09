@@ -14,7 +14,6 @@ public class Knight : ChessPiece
     protected override void Start()
     {
         base.Start();
-
         // 공격 범위 콜라이더 생성 (폰과 100% 동일)
         GameObject rangeObj = new GameObject("AttackRange");
         rangeObj.transform.SetParent(transform);

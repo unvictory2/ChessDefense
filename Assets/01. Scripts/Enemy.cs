@@ -12,6 +12,10 @@ public class Enemy : MonoBehaviour, IDamageable
     public float AttackCooldown = 1f;
     public int rewardCoin = 100;
 
+    [Header("Health Settings")]
+    [SerializeField] private GameObject enemyHealthBarPrefab; // 적 체력바 프리팹
+    private HealthBar _healthBar;
+
     [Header("Targeting")]
     [SerializeField] private LayerMask towerLayer;
     private Transform _currentTarget;
@@ -25,6 +29,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Start()
     {
+        _healthBar = Instantiate(enemyHealthBarPrefab, transform).GetComponent<HealthBar>();
+        _healthBar.SetHealth(Health, Health);
+
         _animator = GetComponentInChildren<Animator>();
         FindNewTarget();
         UpdateAnimation();
@@ -128,7 +135,6 @@ public class Enemy : MonoBehaviour, IDamageable
             );
         }
     }
-
     void StopMoving()
     {
         if (_isMoving)
@@ -137,7 +143,6 @@ public class Enemy : MonoBehaviour, IDamageable
             UpdateAnimation();
         }
     }
-
     void UpdateAnimation()
     {
         if (_animator != null)
@@ -146,7 +151,6 @@ public class Enemy : MonoBehaviour, IDamageable
             _animator.SetFloat("Speed", _isMoving ? MoveSpeed : 0f);
         }
     }
-
     void AttackTarget()
     {
         if (_animator != null)
@@ -162,13 +166,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
-        if (_isDead) return;
-
         Health -= damage;
-        if (Health <= 0)
-        {
-            Die();
-        }
+        _healthBar.SetHealth(Health, 100); // 최대 체력 100 가정
+        if (Health <= 0) Die();
     }
 
     void Die()

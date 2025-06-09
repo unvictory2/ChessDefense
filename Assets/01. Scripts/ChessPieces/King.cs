@@ -5,7 +5,7 @@ public class King : ChessPiece
     protected override void Start()
     {
         base.Start();
-        BoardManager.Instance.RegisterPiece(this); // 보드에 등록
+        BoardManager.Instance.RegisterPiece(this);
     }
 
     public override void TakeDamage(int damage)
@@ -14,7 +14,7 @@ public class King : ChessPiece
 
         if (Health <= 0)
         {
-            GameManager.Instance.GameOver("킹이 파괴되었습니다!");
+            GameManager.Instance.GameOver(false, "King Destroyed!");
             BoardManager.Instance.UnregisterPiece(this);
         }
     }
