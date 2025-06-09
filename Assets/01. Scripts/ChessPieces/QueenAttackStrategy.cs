@@ -3,53 +3,132 @@ using System.Collections.Generic;
 
 public class QueenAttackStrategy : IAttackStrategy
 {
-    private float _range;
+    public float AttackRange { get; private set; }
+    public float AttackThickness { get; private set; }
+    public float AttackHeight { get; private set; }
+    private float _attackInterval;
     private int _damage;
     private GameObject _projectilePrefab;
-    private LayerMask _enemyLayer;
+    private float _lastAttackTime;
 
-    public QueenAttackStrategy(float range, int damage, GameObject projectile, LayerMask enemyLayer)
+    public QueenAttackStrategy(
+        float range,
+        float thickness,
+        float interval,
+        int damage,
+        float height,
+        GameObject projectile
+    )
     {
-        _range = range;
+        AttackRange = range;
+        AttackThickness = thickness;
+        _attackInterval = interval;
         _damage = damage;
+        AttackHeight = height;
         _projectilePrefab = projectile;
-        _enemyLayer = enemyLayer;
     }
 
-    public void Attack(ChessPiece piece)
+    public void Attack(ChessPiece queen)
     {
-        if (_projectilePrefab == null) return;
+        if (Time.time - _lastAttackTime < _attackInterval) return;
 
-        // 8방향으로 발사 (상하좌우 + 대각선)
         Vector3[] directions = {
-            new Vector3(0, 0, 1),              // 상
-            new Vector3(0, 0, -1),             // 하
-            new Vector3(-1, 0, 0),             // 좌
-            new Vector3(1, 0, 0),              // 우
-            new Vector3(1, 0, 1).normalized,   // 우상
-            new Vector3(-1, 0, 1).normalized,  // 좌상
-            new Vector3(1, 0, -1).normalized,  // 우하
-            new Vector3(-1, 0, -1).normalized  // 좌하
+            // 대각선 4방향 (Bishop)
+            new Vector3(1, 0, 1).normalized,
+            new Vector3(-1, 0, 1).normalized,
+            new Vector3(1, 0, -1).normalized,
+            new Vector3(-1, 0, -1).normalized,
+            // 직선 4방향 (Rook)
+            new Vector3(0, 0, 1),
+            new Vector3(0, 0, -1),
+            new Vector3(1, 0, 0),
+            new Vector3(-1, 0, 0)
         };
 
-        foreach (Vector3 direction in directions)
+        bool hasEnemies = false;
+        Dictionary<Vector3, Enemy> directionEnemies = new Dictionary<Vector3, Enemy>();
+
+        // 1. 8방향 적 감지
+        foreach (Vector3 dir in directions)
         {
-            FireProjectile(piece.transform.position, direction);
+            List<Enemy> enemiesInDir = DetectEnemiesInDirection(queen.transform.position, dir);
+            Enemy nearest = GetNearestEnemy(queen.transform.position, enemiesInDir);
+            directionEnemies[dir] = nearest;
+            if (nearest != null) hasEnemies = true;
         }
+
+        if (!hasEnemies) return;
+
+        // 2. 모든 방향 공격 실행
+        foreach (Vector3 dir in directions)
+        {
+            Vector3 targetPos = directionEnemies[dir] != null
+                ? directionEnemies[dir].transform.position
+                : queen.transform.position + dir * AttackRange;
+
+            FireProjectile(queen.transform.position, targetPos);
+        }
+
+        _lastAttackTime = Time.time;
     }
 
-    private void FireProjectile(Vector3 from, Vector3 direction)
+    private List<Enemy> DetectEnemiesInDirection(Vector3 origin, Vector3 direction)
     {
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        Vector3 halfExtents = new Vector3(
+            AttackThickness * 0.5f,
+            AttackHeight * 0.5f,
+            AttackRange * 0.5f
+        );
+        Vector3 center = origin + direction * AttackRange * 0.5f;
+
+        Collider[] hits = Physics.OverlapBox(
+            center,
+            halfExtents,
+            rotation,
+            LayerMask.GetMask("Enemy"),
+            QueryTriggerInteraction.Collide
+        );
+
+        List<Enemy> enemies = new List<Enemy>();
+        foreach (Collider hit in hits)
+        {
+            Enemy enemy = hit.GetComponent<Enemy>();
+            if (enemy != null) enemies.Add(enemy);
+        }
+        return enemies;
+    }
+
+    private Enemy GetNearestEnemy(Vector3 origin, List<Enemy> enemies)
+    {
+        Enemy nearest = null;
+        float minDistance = Mathf.Infinity;
+
+        foreach (Enemy enemy in enemies)
+        {
+            float distance = Vector3.Distance(origin, enemy.transform.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                nearest = enemy;
+            }
+        }
+        return nearest;
+    }
+
+    private void FireProjectile(Vector3 from, Vector3 to)
+    {
+        Vector3 direction = (to - from).normalized;
         GameObject projectile = Object.Instantiate(
             _projectilePrefab,
             from,
             Quaternion.LookRotation(direction)
         );
-        projectile.GetComponent<Projectile>().Initialize(_damage, _enemyLayer, direction);
-    }
 
-    public void ShowAttackRange(ChessPiece piece)
-    {
-        // 8방향 범위 표시 로직
+        Projectile projectileScript = projectile.GetComponent<Projectile>();
+        if (projectileScript != null)
+        {
+            projectileScript.Initialize(_damage, LayerMask.GetMask("Enemy"), direction);
+        }
     }
 }

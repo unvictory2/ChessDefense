@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class BishopAttackStrategy : IAttackStrategy
+public class RookAttackStrategy : IAttackStrategy
 {
     public float AttackRange { get; private set; }
     public float AttackThickness { get; private set; }
@@ -11,7 +11,7 @@ public class BishopAttackStrategy : IAttackStrategy
     private GameObject _projectilePrefab;
     private float _lastAttackTime;
 
-    public BishopAttackStrategy(
+    public RookAttackStrategy(
         float range,
         float thickness,
         float interval,
@@ -28,25 +28,25 @@ public class BishopAttackStrategy : IAttackStrategy
         _projectilePrefab = projectile;
     }
 
-    public void Attack(ChessPiece bishop)
+    public void Attack(ChessPiece rook)
     {
         if (Time.time - _lastAttackTime < _attackInterval) return;
 
         Vector3[] directions = {
-            new Vector3(1, 0, 1).normalized,
-            new Vector3(-1, 0, 1).normalized,
-            new Vector3(1, 0, -1).normalized,
-            new Vector3(-1, 0, -1).normalized
+            new Vector3(0, 0, 1),  // 전방 (Z+)
+            new Vector3(0, 0, -1), // 후방 (Z-)
+            new Vector3(1, 0, 0),  // 우측 (X+)
+            new Vector3(-1, 0, 0)  // 좌측 (X-)
         };
 
         bool hasEnemies = false;
         Dictionary<Vector3, Enemy> directionEnemies = new Dictionary<Vector3, Enemy>();
 
-        // 1. 모든 방향 적 감지
+        // 1. 4방향 적 감지
         foreach (Vector3 dir in directions)
         {
-            List<Enemy> enemiesInDir = DetectEnemiesInDirection(bishop.transform.position, dir);
-            Enemy nearest = GetNearestEnemy(bishop.transform.position, enemiesInDir);
+            List<Enemy> enemiesInDir = DetectEnemiesInDirection(rook.transform.position, dir);
+            Enemy nearest = GetNearestEnemy(rook.transform.position, enemiesInDir);
             directionEnemies[dir] = nearest;
             if (nearest != null) hasEnemies = true;
         }
@@ -58,9 +58,9 @@ public class BishopAttackStrategy : IAttackStrategy
         {
             Vector3 targetPos = directionEnemies[dir] != null
                 ? directionEnemies[dir].transform.position
-                : bishop.transform.position + dir * AttackRange;
+                : rook.transform.position + dir * AttackRange;
 
-            FireProjectile(bishop.transform.position, targetPos);
+            FireProjectile(rook.transform.position, targetPos);
         }
 
         _lastAttackTime = Time.time;

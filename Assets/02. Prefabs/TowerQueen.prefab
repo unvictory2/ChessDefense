@@ -122,9 +122,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Team: 0
   Health: 100
-  ProjectilePrefab: {fileID: 0}
-  _attackRange: 5
-  _attackDamage: 20
+  ProjectilePrefab: {fileID: 652861137694787472, guid: 1d9362323ddd0d64a82844336f1a3255, type: 3}
+  _attackRange: 10
+  _attackThickness: 1
+  _attackInterval: 1.5
+  _attackDamage: 35
+  _attackHeight: 2.2
 --- !u!54 &4401273993918433009
 Rigidbody:
   m_ObjectHideFlags: 0
