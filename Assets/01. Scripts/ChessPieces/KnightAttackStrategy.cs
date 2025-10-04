@@ -20,7 +20,6 @@ public class KnightAttackStrategy : IAttackStrategy
         _attackParticlesPrefab = particles;
     }
 
-
     public void Attack(ChessPiece knight)
     {
         if (Time.time - _lastAttackTime < _attackCooldown) return;
